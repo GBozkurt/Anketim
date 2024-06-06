@@ -1,0 +1,61 @@
+﻿@page
+@model myApp.Pages.EkleModel
+@{
+}
+<div class="row">
+	<div class="col-md-8 mx-auto rounded border p-3">
+		<h2 class="text-center mb-5">Yeni Not</h2>
+
+		@if (Model.errorMessage.Length > 0)
+		{
+			<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+				<strong>@Model.errorMessage</strong>
+				<button type='button' class='btn-close' data-bs-dissmiss='alert' aria-label='Kapat'></button>
+			</div>
+		}
+		else if (Model.successMessage.Length > 0)
+		{
+			<div class='alert alert-success alert-dismissible fade show' role='alert'>
+				<strong>@Model.successMessage</strong>
+				<button type='button' class='btn-close' data-bs-dissmiss='alert' aria-label='Kapat'></button>
+			</div>
+		}
+		<form method="post" enctype="multipart/form-data">
+			<div class="row mb-3">
+				<label class="col-sm-4 col-form-label">Başlık</label>
+				<div class="col-sm-8">
+					<input class="form-control" asp-for="anketDto.name" readonly>
+					<span asp-validation-for="anketDto.name" class="text-danger"></span>
+				</div>
+			</div>
+
+			<div class="row mb-3">
+				<label class="col-sm-4 col-form-label">Not</label>
+				<div class="col-sm-8">
+					<textarea class="form-control" id="exampleFormControlTextarea1" rows="2" asp-for="anketDto.description" readonly></textarea>
+					<span asp-validation-for="anketDto.description" class="text-danger"></span>
+				</div>
+			</div>
+
+			<div class="row mb-3">
+				<input type="radio" value="gc" name="secim" id="secimiyi" />
+				<label for="secimiyi" id="myLabel">@Model.anketDto.birinci</label>
+				<input type="radio" value="nc" name="secim" id="secimnormal" />
+				<label for="secimnormal">@Model.anketDto.ikinci</label>
+				<input type="radio" value="bc" name="secim" id="secimkotu"  />
+				<label for="secimkotu">@Model.anketDto.ucuncu</label>
+				
+			</div>
+			
+			<div class="row mb-3">
+				<div class="offset-sm-4 col-sm-4 d-grid">
+					<button type="submit" class="btn btn-primary">Gönder</button>
+				</div>
+				<div class="col-sm-4 d-grid">
+					<a class="btn btn-outline-primary" href="/Index" role="button">Çıkış</a>
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

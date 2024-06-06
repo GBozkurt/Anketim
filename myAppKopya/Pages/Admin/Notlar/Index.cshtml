@@ -1,0 +1,43 @@
+﻿@page
+@using Microsoft.EntityFrameworkCore.Metadata.Internal;
+@model myApp.Pages.Admin.Notlar.IndexModel
+@{
+}
+
+
+<h2 class="text-center mb-5">Anketler</h2>
+<div class="row mb-5">
+    <div class="col">
+        <a class='btn btn-primary' href='/Admin/Notlar/Create'>Yeni Anket</a>
+    </div>  
+    <div class="col"></div>
+</div>
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Başlık</th>
+        <th>Metin</th>
+        <th>Giriliş Tarihi</th>
+    </tr>
+
+
+
+@foreach(var anket in Model.Ankets)
+{
+        
+        <tr>
+        <td>@anket.id</td>
+        <td>@anket.name</td>
+            @if (anket.description.Length > 80){<td> @anket.description.Substring(0, 80) </td>}
+            @if (anket.description.Length <= 80)
+            {
+                <td> @anket.description</td>
+            }
+            <td>@anket.CreatedDate.ToString("MM/dd/yyyy")</td>
+        <td style="white-space:nowrap">
+                <a class="btn btn-primary btn-sm" href="/Admin/Notlar/Edit?id=@anket.id">Değiştir</a>
+                <a class="btn btn-danger btn-sm" href="/Admin/Notlar/Delete?id=@anket.id">Sil</a>
+        </td>
+    </tr>
+}
+</table>

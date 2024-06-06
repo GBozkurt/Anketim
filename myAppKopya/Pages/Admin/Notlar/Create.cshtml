@@ -1,0 +1,73 @@
+﻿@page
+@model CreateModel
+@{
+}
+
+<div class="row">
+	<div class="col-md-8 mx-auto rounded border p-3">
+		<h2 class="text-center mb-5">Yeni Not</h2>
+		
+		@if (Model.errorMessage.Length > 0)
+		{
+			<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+				<strong>@Model.errorMessage</strong>
+				<button type='button' class='btn-close' data-bs-dissmiss='alert' aria-label='Kapat'></button>
+			</div>
+		}
+		else if (Model.successMessage.Length > 0)
+		{
+			<div class='alert alert-success alert-dismissible fade show' role='alert'>
+				<strong>@Model.successMessage</strong>
+				<button type='button' class='btn-close' data-bs-dissmiss='alert' aria-label='Kapat'></button>
+			</div>
+		}
+		<form method="post" enctype="multipart/form-data">
+			<div class="row mb-3">
+				<label class="col-sm-4 col-form-label">Başlık:</label>
+				<div class="col-sm-8">
+					<input class="form-control" asp-for="anketDto.name">
+					<span asp-validation-for="anketDto.name" class="text-danger"></span>
+				</div>
+			</div>
+
+			<div class="row mb-3">
+				<label class="col-sm-4 col-form-label">Not:</label>
+				<div class="col-sm-8">
+					<textarea class="form-control" id="exampleFormControlTextarea1" rows="5" asp-for="anketDto.description"></textarea>
+					<span asp-validation-for="anketDto.description" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label class="col-sm-4 col-form-label">Birinci seçenek:</label>
+				<div class="col-sm-8">
+					<input class="form-control" asp-for="anketDto.birinci">
+					<span asp-validation-for="anketDto.birinci" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label class="col-sm-4 col-form-label">İkinci seçenek:</label>
+				<div class="col-sm-8">
+					<input class="form-control" asp-for="anketDto.ikinci">
+					<span asp-validation-for="anketDto.ikinci" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label class="col-sm-4 col-form-label">Üçüncü seçenek:</label>
+				<div class="col-sm-8">
+					<input class="form-control" asp-for="anketDto.ucuncu">
+					<span asp-validation-for="anketDto.ucuncu" class="text-danger"></span>
+				</div>
+			</div>
+
+
+			<div class="row mb-3">
+				<div class="offset-sm-4 col-sm-4 d-grid">
+					<button type="submit" class="btn btn-primary">Gönder</button>
+				</div>
+				<div class="col-sm-4 d-grid">
+					<a class="btn btn-outline-primary" href="/Index" role="button">İptal</a>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

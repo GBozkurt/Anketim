@@ -1,0 +1,25 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<body>
+
+<h2 class="text-center mb-5">Anketler</h2>
+
+@foreach(var anket in Model.Ankets)
+{
+    <div class="card mx-auto" style="width: 25rem;">
+        <div class="card-body">
+            <h5 class="card-title">@anket.name</h5>
+            <p class="card-text">@anket.description</p>
+                <p class="card-text">@anket.birinci : @anket.gc @anket.ikinci : @anket.nc @anket.ucuncu : @anket.bc </p>
+                <a href="/Ekle?id=@anket.id">Oyla</a>
+                <a href="/Oylayanlar?id=@anket.id">Oylayanları gör</a>
+        </div>
+    </div>
+
+}
+    
+
+</body>
